@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 41.8775, lng: -87.6298},
+          zoom: 11
+        });
+        /* School Closings */
+        var schoolIcon = '../Markers/blue_MarkerA.png';
+        var humboldtMarker = new google.maps.Marker({
+          position: {lat: 41.9071054, lng: -87.6950723},
+          map: map,
+          icon: schoolIcon,
+          title: 'Alexander Von Humboldt Elementary School'
+        });
+        var kohnMarker = new google.maps.Marker({
+          position: {lat: 41.704867, lng: -87.6421599},
+          map: map,
+          icon: schoolIcon,
+          title: 'Alfred David Kohn Elementary School'
+        });
+        var roqueMarker = new google.maps.Marker({
+          position: {lat:41.9071048, lng: -87.6928841},
+          map: map,
+          icon: schoolIcon,
+          title: 'Ana Roque de Duprey Elementary School'
+        });
+        roqueMarker.setMap(map);
+        var overtonMarker = new google.maps.Marker({
+          position: {lat:41.8054857, lng: -87.6225273},
+          map: map,
+          icon: schoolIcon,
+          title: 'Anthony Overton Elementary School'
+        });
+        var bontempsMarker = new google.maps.Marker({
+          position: {lat:41.7884013, lng: -87.6565558},
+          map: map,
+          icon: schoolIcon,
+          title: 'Arna W. Bontemps Public School'
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKmjmMYDl8mHCJpVPv-WGkgwBMFMOaV-o&callback=initMap"
+    async defer></script>
+  </body>
+</html>
