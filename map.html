@@ -26,17 +26,26 @@
           center: {lat: 41.8775, lng: -87.6298},
           zoom: 11
         });
-             $.ajax({
-      url: "https://data.cityofchicago.org/resource/6zsd-86xi.json?primary_type=HOMICIDE&year=2003",
-      type: "GET",
-      data: {
-        "$limit" : 5000,
-        "$$app_token" : "fnvMAip1zZ9QWGmsnc6up5HSy"
-      }
-    }).done(function(data) {
-      alert("Retrieved " + data.length + " records from the dataset!");
-      data.forEach(function(element){
-        console.log($(element)[0].latitude + ', ' + $(element)[0].longitude);
+        map.data.loadGeoJson('https://data.cityofchicago.org/resource/igwz-8jzy.geojson');
+        map.data.setStyle({
+          fillColor: 'green',
+          strokeWeight: 1
+        });
+        map.data.addListener('click', function(event) {
+          map.data.overrideStyle(event.feature, {fillColor: 'red'});
+          console.log(event.feature);
+        });
+        $.ajax({
+          url: "https://data.cityofchicago.org/resource/6zsd-86xi.json?primary_type=HOMICIDE&year=2016",
+          type: "GET",
+          data: {
+            "$limit" : 5000,
+            "$$app_token" : "fnvMAip1zZ9QWGmsnc6up5HSy"
+          }
+        }).done(function(data) {
+          alert("Retrieved " + data.length + " records from the dataset!");
+          data.forEach(function(element){
+          console.log($(element)[0].community_area);
         var marker = new google.maps.Marker({
           position: {lat: Number($(element)[0].latitude), lng: Number($(element)[0].longitude)},
           map: map,
